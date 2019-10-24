@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour {
   [SerializeField] private List<CameraInitialSection> initialSections;
 
   public List<CameraEnterSection.RespawnPoint> respawnPoints;
+
+  public List<EnemyGeneric> enemies = new List<EnemyGeneric>();
+
 	// Use this for initialization
 	void Awake () {
 	  Managers.controller = this;
