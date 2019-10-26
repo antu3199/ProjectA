@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -973,7 +973,7 @@ Prefab:
     - target: {fileID: 61271173705703350, guid: 8e00169d33153b34ebfb5d7f5df3e4eb,
         type: 2}
       propertyPath: m_Size.y
-      value: 10.11
+      value: 10.102392
       objectReference: {fileID: 0}
     - target: {fileID: 4742537006758672, guid: 8e00169d33153b34ebfb5d7f5df3e4eb, type: 2}
       propertyPath: m_LocalScale.x
@@ -3427,7 +3427,7 @@ Camera:
   far clip plane: 1000
   field of view: 161.57755
   orthographic: 1
-  orthographic size: 5.055
+  orthographic size: 5.051196
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4013,7 +4013,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4742537006758672, guid: 8e00169d33153b34ebfb5d7f5df3e4eb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.05499983
+      value: -0.0511961
       objectReference: {fileID: 0}
     - target: {fileID: 4742537006758672, guid: 8e00169d33153b34ebfb5d7f5df3e4eb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4056,7 +4056,7 @@ Prefab:
     - target: {fileID: 61271173705703350, guid: 8e00169d33153b34ebfb5d7f5df3e4eb,
         type: 2}
       propertyPath: m_Size.y
-      value: 10.11
+      value: 10.102392
       objectReference: {fileID: 0}
     - target: {fileID: 4742537006758672, guid: 8e00169d33153b34ebfb5d7f5df3e4eb, type: 2}
       propertyPath: m_LocalScale.x
@@ -5288,6 +5288,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeSprite: {fileID: 889783309}
   range: 5
+--- !u!114 &1706912260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706912255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f6c51febaa94b4ea4980eb1c2786a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1750697806
 Prefab:
   m_ObjectHideFlags: 0
