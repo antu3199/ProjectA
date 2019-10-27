@@ -58,6 +58,10 @@ public class PlayerRangeIndicator : MonoBehaviour, IPointerDownHandler, IPointer
     if (Input.GetKeyDown(KeyCode.DownArrow)) {
       this.OnSwipeDirection(SwipeDirection.DOWN);
     }
+
+    foreach (EnemyGeneric enemy in this.enemiesInRange) {
+      Debug.Log("Next dir: " + enemy.enemyHealth.getNextDirection());
+    }
 	}
 	
 	public bool isInRange(Vector2 pos) {
