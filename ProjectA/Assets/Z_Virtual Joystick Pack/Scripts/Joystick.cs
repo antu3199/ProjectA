@@ -72,22 +72,22 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
       Vector2 newInputVector = Vector2.zero;
       
-      if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+      if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A)) {
         this.currentDPadState = DPadState.ON_KEY_DOWN;
-      } else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) {
+      } else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)) {
         this.currentDPadState = DPadState.ON_KEY_UP;
       }
 
-      if (Input.GetKey(KeyCode.UpArrow)) {
+      if (Input.GetKey(KeyCode.W)) {
         newInputVector.y += 1;
       }
-      if (Input.GetKey(KeyCode.DownArrow)) {
+      if (Input.GetKey(KeyCode.S)) {
         newInputVector.y += -1;  
       }
-      if (Input.GetKey(KeyCode.RightArrow)) {
+      if (Input.GetKey(KeyCode.D)) {
         newInputVector.x += 1;
       }
-      if (Input.GetKey(KeyCode.LeftArrow)) {
+      if (Input.GetKey(KeyCode.A)) {
         newInputVector.x -=  1;
       }
 
