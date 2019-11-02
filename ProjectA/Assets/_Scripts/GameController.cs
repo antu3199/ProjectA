@@ -12,12 +12,20 @@ public class GameController : MonoBehaviour {
 
   public List<EnemyGeneric> enemies = new List<EnemyGeneric>();
 
+  public MapGenerator map;
+
 	// Use this for initialization
 	void Awake () {
 	  Managers.controller = this;
+    map.Initialize();
+
+    Vector2 playerSpawn = map.getRandomUnOccupiedSpace();
+    Debug.Log("location: " + playerSpawn);
+    player.transform.position = new Vector3(playerSpawn.x, playerSpawn.y, player.transform.position.z);
 	}
 
   void Start() {
+    /* 
     this.respawnPoints = new List<CameraEnterSection.RespawnPoint>();
     foreach (var cameraSection in this.initialSections) {
       cameraSection.Initialize();
@@ -27,6 +35,7 @@ public class GameController : MonoBehaviour {
     CameraEnterSection.RespawnPoint respawnPoint = this.respawnPoints[Managers.gameState.savePointIndex];
     player.transform.position = respawnPoint.playerRespawnPoint.position;
     Camera.main.transform.position = respawnPoint.cameraTransform;
+    */
   }
 	
 	// Update is called once per frame
