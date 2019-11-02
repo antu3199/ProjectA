@@ -1072,6 +1072,7 @@ GameObject:
   - component: {fileID: 363870800}
   - component: {fileID: 363870799}
   - component: {fileID: 363870802}
+  - component: {fileID: 363870803}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1127,6 +1128,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savePointIndex: 0
+--- !u!114 &363870803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 363870798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e248c7439ac7244b9e4c258191f409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites: []
 --- !u!1 &374787025
 GameObject:
   m_ObjectHideFlags: 0

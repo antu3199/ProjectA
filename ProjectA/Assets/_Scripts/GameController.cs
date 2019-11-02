@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour {
     map.Initialize();
 
     Vector2 playerSpawn = map.getRandomUnOccupiedSpace();
-    Debug.Log("location: " + playerSpawn);
     player.transform.position = new Vector3(playerSpawn.x, playerSpawn.y, player.transform.position.z);
 	}
 

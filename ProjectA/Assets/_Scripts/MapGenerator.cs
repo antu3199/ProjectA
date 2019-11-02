@@ -58,7 +58,6 @@ public class MapGenerator : MonoBehaviour {
 
     public Vector2 getRandomUnOccupiedSpace() {
       int i = UnityEngine.Random.Range(0, unOccupiedSpaces.Count);
-      Debug.Log("i: " + i);
       return mapToPos(unOccupiedSpaces[i].x, unOccupiedSpaces[i].y);
     }
 
