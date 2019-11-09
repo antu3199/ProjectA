@@ -3098,7 +3098,7 @@ Camera:
   far clip plane: 1000
   field of view: 161.57755
   orthographic: 1
-  orthographic size: 5.051196
+  orthographic size: 5.0589275
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3495879a144dc1c4ba2c629a003625dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1703202474}
+  controller: {fileID: 1706912256}
 --- !u!50 &1369163299
 Rigidbody2D:
   serializedVersion: 4
@@ -4734,6 +4734,40 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1976296877092912, guid: 18833499c344220449aa642dc9c4ad26,
     type: 2}
   m_PrefabInternal: {fileID: 2083142182}
+--- !u!114 &1706912256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706912255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851c2302161089341af6ec9161dead06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1703202475}
+  wallJumpOffset: 0.1
+  characterHeight: 0.45
+  characterSpeed: 250
+  maxSpeed: 5
+  jumpHeight: 500
+  movementSensitivity: 1
+  movementDragSpeed: 0.5
+  wallClimbUpForce: 1
+  wallJumpMultiplier: {x: 1, y: 1}
+  airDrag: {x: 2, y: 10}
+  ground1: {fileID: 776948425}
+  ground2: {fileID: 1976692063}
+  jumpStrength: 3
+  extraJumpStrengthInitial: 80
+  extraJumpStrengthDrag: 8
+  dashSpeed: 15
+  dashTime: 0.15
+  neutralColor: {r: 1, g: 0, b: 0, a: 1}
+  dashingColor: {r: 0.025200844, g: 0, b: 1, a: 1}
+  move: 1
+  isGrounded: 0
+  isDashing: 0
 --- !u!114 &1706912259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5644,7 +5678,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4428355841080490, guid: 18833499c344220449aa642dc9c4ad26, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4428355841080490, guid: 18833499c344220449aa642dc9c4ad26, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5848,6 +5882,11 @@ Prefab:
       propertyPath: m_Offset.y
       value: -0.47
       objectReference: {fileID: 0}
+    - target: {fileID: 114462718246601688, guid: 18833499c344220449aa642dc9c4ad26,
+        type: 2}
+      propertyPath: movementBody
+      value: 
+      objectReference: {fileID: 1706912256}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18833499c344220449aa642dc9c4ad26, type: 2}
   m_IsPrefabAsset: 0

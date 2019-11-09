@@ -2,6 +2,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public class JoystickState {
+  public Joystick.DPadDirection direction = Joystick.DPadDirection.NEUTRAL;
+  public Joystick.DPadState state = Joystick.DPadState.NEUTRAL;
+
+  public JoystickState() {}
+  public JoystickState(JoystickState state) {
+    this.direction = state.direction;
+    this.state  = state.state;
+  }
+};
+
 public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     [Header("Options")]
@@ -18,7 +29,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
     Vector2 joystickPosition = Vector2.zero;
     private Camera cam = new Camera();
-    private List<Vector2> dPadDirections;
+    public static List<Vector2> dPadDirections = new List<Vector2>();
     private bool isPressingUI = false;
 
     public enum DPadDirection {
@@ -31,14 +42,17 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         TOP_RIGHT = 6,
         BOTTOM_LEFT = 7,
         BOTTOM_RIGHT = 8
-    }
+    };
     
     public enum DPadState {
       NEUTRAL,
       ON_KEY_DOWN,
       ON_KEY,
       ON_KEY_UP
-    }
+    };
+
+    public JoystickState joystickState = new JoystickState();
+
 
     private DPadState currentDPadState;
 
@@ -46,8 +60,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     {
       joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
 
-      this.dPadDirections = new List<Vector2>();
+      dPadDirections = new List<Vector2>();
       float diagonalMag = 1f / Mathf.Sqrt(2);
+
+      dPadDirections.Clear();
       Vector2 up = Vector2.up;
       Vector2 down = Vector2.down;
       Vector2 left = Vector2.left;
@@ -56,17 +72,17 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
       Vector2 topRight = new Vector2(diagonalMag,diagonalMag).normalized;
       Vector2 bottomLeft = new Vector2(-diagonalMag,-diagonalMag).normalized;
       Vector2 bottomRight = new Vector2(diagonalMag, -diagonalMag).normalized;
-      this.dPadDirections.Add(up);
-      this.dPadDirections.Add(down);
-      this.dPadDirections.Add(left);
-      this.dPadDirections.Add(right);
-      this.dPadDirections.Add(topLeft);
-      this.dPadDirections.Add(topRight);
-      this.dPadDirections.Add(bottomLeft);
-      this.dPadDirections.Add(bottomRight);
+      dPadDirections.Add(up);
+      dPadDirections.Add(down);
+      dPadDirections.Add(left);
+      dPadDirections.Add(right);
+      dPadDirections.Add(topLeft);
+      dPadDirections.Add(topRight);
+      dPadDirections.Add(bottomLeft);
+      dPadDirections.Add(bottomRight);
       this.currentDPadState = DPadState.NEUTRAL;
     }
- 
+
     void Update() {
       #if UNITY_EDITOR
 
@@ -97,6 +113,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
       }
       #endif
 
+      joystickState.direction = GetDPadDirection();
+      joystickState.state = this.currentDPadState;
     }
 
     void LateUpdate() {
@@ -135,9 +153,9 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
       if (inputVector == Vector2.zero) return DPadDirection.NEUTRAL;
       
       DPadDirection curDPadDirection = (DPadDirection)1;
-      float maxDot = Vector2.Dot(this.dPadDirections[0], this.inputVector);
-      for (int i = 1; i < this.dPadDirections.Count; i++) {
-          float dot = Vector2.Dot(this.dPadDirections[i], this.inputVector);
+      float maxDot = Vector2.Dot(dPadDirections[0], this.inputVector);
+      for (int i = 1; i < dPadDirections.Count; i++) {
+          float dot = Vector2.Dot(dPadDirections[i], this.inputVector);
           if (dot > maxDot){
               curDPadDirection = (DPadDirection)i+1;
               maxDot = dot;
@@ -146,37 +164,53 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
       return curDPadDirection;
     }
 
-    public Vector2 GetMovementDirection() {
-      int direction = (int)this.GetDPadDirection();
+    public static Vector2 GetMovementDirection(JoystickState other) {
+      int direction = (int)other.direction;
       if (direction == 0) {
         return Vector2.zero;
       }
 
-      return this.dPadDirections[direction-1];
+      return dPadDirections[direction-1];
     }
 
-    public bool Neutral() {
-      return this.GetDPadDirection() == DPadDirection.NEUTRAL;
+    public static bool isNeutral (DPadDirection dir) {
+      return dir == DPadDirection.NEUTRAL;
     }
 
-    public bool Left() {
-      DPadDirection direction =  this.GetDPadDirection();
+    public static bool isLeft (DPadDirection direction) {
       return direction == DPadDirection.LEFT || direction == DPadDirection.TOP_LEFT || direction == DPadDirection.BOTTOM_LEFT;
     }
 
-    public bool Right() {
-      DPadDirection direction =  this.GetDPadDirection();
+    public static bool isRight (DPadDirection direction) {
       return direction == DPadDirection.RIGHT || direction == DPadDirection.TOP_RIGHT || direction == DPadDirection.BOTTOM_RIGHT;
     }
 
-    public bool Up() {
-      DPadDirection direction =  this.GetDPadDirection();
+    public static bool isUp (DPadDirection direction) {
       return direction == DPadDirection.UP || direction == DPadDirection.TOP_LEFT || direction == DPadDirection.TOP_RIGHT;
     }
 
-    public bool Down() {
-      DPadDirection direction =  this.GetDPadDirection();
+    public static bool isDown (DPadDirection direction) {
       return direction == DPadDirection.DOWN || direction == DPadDirection.BOTTOM_LEFT || direction == DPadDirection.BOTTOM_RIGHT;
+    }
+
+    public bool Neutral() {
+      return Joystick.isNeutral(this.GetDPadDirection());
+    }
+
+    public bool Left() {
+        return Joystick.isLeft(this.GetDPadDirection());
+    }
+
+    public bool Right() {
+        return Joystick.isRight(this.GetDPadDirection());
+    }
+
+    public bool Up() {
+        return Joystick.isUp(this.GetDPadDirection());
+    }
+
+    public bool Down() {
+        return Joystick.isDown(this.GetDPadDirection());
     }
     
     public bool TopLeft() {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundHelper : MonoBehaviour {
   
-  [SerializeField] private PlayerController controller;
+  [SerializeField] private MovementBody controller;
   
 
   void Start() {
