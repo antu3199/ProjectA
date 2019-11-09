@@ -1244,6 +1244,8 @@ MonoBehaviour:
   respawnPoints: []
   enemies: []
   map: {fileID: 1353877946}
+  spawnPlayerInFixedLocation: 1
+  fixedLocation: {x: 0, y: 0}
 --- !u!4 &448357505
 Transform:
   m_ObjectHideFlags: 0
@@ -3597,6 +3599,7 @@ MonoBehaviour:
   useRandomSeed: 0
   randomFillPercent: 50
   wallPrefab: {fileID: 1306717470383856, guid: 38dd1a038c89a74448c8110bc03f4bb9, type: 2}
+  useTestingMap: 1
 --- !u!4 &1353877947
 Transform:
   m_ObjectHideFlags: 0

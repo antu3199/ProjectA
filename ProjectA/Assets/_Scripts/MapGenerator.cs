@@ -21,6 +21,8 @@ public class MapGenerator : MonoBehaviour {
 
     public GameObject wallPrefab;
 
+    public bool useTestingMap;
+
     public void Initialize() {
         GenerateMap();
         CreateMap();
@@ -33,14 +35,42 @@ public class MapGenerator : MonoBehaviour {
     }
 
     void GenerateMap() {
+
         map = new int[width,height];
-        RandomFillMap();
+
+        if (!useTestingMap) {
+          RandomFillMap();
+        } else {
+          GenerateTestingMap();
+        }
+
 
         for (int i = 0; i < 5; i ++) {
             SmoothMap();
         }
 
         PostGenerateMap();
+    }
+
+    void GenerateTestingMap() {
+        if (useRandomSeed) {
+            seed = Time.time.ToString();
+        }
+
+        System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+
+        for (int x = 0; x < width; x ++) {
+            for (int y = 0; y < height; y ++) {
+                if (x == 0 || x == width-1 || y < height/2 || y == height -1) {
+                    map[x,y] = 1;
+                }
+                else if (y >= height/2 && y <= height/2 + 1) {
+                   map[x, y] = 0;
+                } else {
+                  map[x,y] = (pseudoRandom.Next(0,100) < randomFillPercent)? 1: 0;
+                }
+            }
+        }
     }
 
     void PostGenerateMap() {

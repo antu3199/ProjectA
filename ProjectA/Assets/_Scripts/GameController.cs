@@ -14,12 +14,18 @@ public class GameController : MonoBehaviour {
 
   public MapGenerator map;
 
+  public bool spawnPlayerInFixedLocation;
+  public Vector2 fixedLocation;
+
 	// Use this for initialization
 	void Awake () {
 	  Managers.controller = this;
     map.Initialize();
 
     Vector2 playerSpawn = map.getRandomUnOccupiedSpace();
+    if (spawnPlayerInFixedLocation) {
+      playerSpawn = fixedLocation;
+    }
     player.transform.position = new Vector3(playerSpawn.x, playerSpawn.y, player.transform.position.z);
 	}
 

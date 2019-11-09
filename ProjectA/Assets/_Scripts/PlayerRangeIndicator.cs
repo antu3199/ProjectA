@@ -59,9 +59,6 @@ public class PlayerRangeIndicator : MonoBehaviour, IPointerDownHandler, IPointer
       this.OnSwipeDirection(SwipeDirection.DOWN);
     }
 
-    foreach (EnemyGeneric enemy in this.enemiesInRange) {
-      Debug.Log("Next dir: " + enemy.enemyHealth.getNextDirection());
-    }
 	}
 	
 	public bool isInRange(Vector2 pos) {
